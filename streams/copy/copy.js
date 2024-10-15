@@ -1,5 +1,7 @@
+const { pipeline } = require("stream");
 const fs = require("fs/promises");
 
+/* Usual Streams */
 /* (async () => {
   const fileHandlerRead = await fs.open("./src.txt", "r");
   const fileHandleWrite = await fs.open("./copied.txt", "w");
@@ -26,8 +28,8 @@ const fs = require("fs/promises");
   console.timeEnd("Copy");
 })(); */
 
-/* Custom streams without Node js Streams */ 
-(async () => {
+/* Custom streams without Node js Streams*/
+/* (async () => {
   console.time("Copy");
 
   const fileHandlerRead = await fs.open("./src.txt", "r");
@@ -49,4 +51,48 @@ const fs = require("fs/promises");
   }
 
   console.timeEnd("Copy");
+})(); */
+
+/* Custom streams with Node js Pipe*/
+/* (async () => {
+  console.time("Copy");
+
+  const fileHandlerRead = await fs.open("./src.txt", "r");
+  const fileHandleWrite = await fs.open("./copied.txt", "w");
+
+  const readStream = fileHandlerRead.createReadStream();
+  const writeStream = fileHandleWrite.createWriteStream();
+
+  writeStream.on("pipe", () => {
+    console.log("Piped to the readable stream");
+  });
+  writeStream.on("unpipe", () => {
+    console.log("Unpiped!");
+  });
+
+  console.log(readStream.readableFlowing);
+  readStream.pipe(writeStream);
+
+  console.log(readStream.readableFlowing);
+  readStream.on("end", () => {
+    readStream.unpipe(writeStream);
+    console.log(readStream.readableFlowing);
+    console.timeEnd("Copy");
+  });
+})(); */
+
+/* Custom streams with Node js Pipeline*/
+(async () => {
+  console.time("Copy");
+
+  const fileHandlerRead = await fs.open("./src.txt", "r");
+  const fileHandleWrite = await fs.open("./copied.txt", "w");
+
+  const readStream = fileHandlerRead.createReadStream();
+  const writeStream = fileHandleWrite.createWriteStream();
+
+  pipeline(readStream, writeStream, err => {
+    console.log(err);
+    console.timeEnd("Copy");
+  });
 })();
