@@ -83,16 +83,16 @@ const fs = require("fs/promises");
 
 /* Custom streams with Node js Pipeline*/
 (async () => {
-  console.time("Copy");
+    console.time("Copy");
 
-  const fileHandlerRead = await fs.open("./src.txt", "r");
-  const fileHandleWrite = await fs.open("./copied.txt", "w");
+    const fileHandlerRead = await fs.open("./src.txt", "r");
+    const fileHandleWrite = await fs.open("./copied.txt", "w");
 
-  const readStream = fileHandlerRead.createReadStream();
-  const writeStream = fileHandleWrite.createWriteStream();
+    const readStream = fileHandlerRead.createReadStream();
+    const writeStream = fileHandleWrite.createWriteStream();
 
-  pipeline(readStream, writeStream, err => {
-    console.log(err);
-    console.timeEnd("Copy");
-  });
+    pipeline(readStream, writeStream, err => {
+        console.log(err);
+        console.timeEnd("Copy");
+    });
 })();

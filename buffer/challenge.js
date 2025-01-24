@@ -1,5 +1,5 @@
 // 0100 1000 0110 1001 0010 0001
-const {Buffer} = require("buffer");
+const { Buffer } = require("buffer");
 /* const memoryContainer = Buffer.alloc(3);
 
 Binary representation
@@ -22,6 +22,6 @@ const memoryContainer = Buffer.from("Hi!", "utf-8"); // We are sending 'Hi!' as 
 
 
 console.log(
-    {memoryContainer}, 
+    { memoryContainer },
     memoryContainer.toString("utf-8") // UTF 8 bit decoding
 );
