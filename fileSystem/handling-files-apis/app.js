@@ -25,7 +25,7 @@ console.log("Check Async Callback"); */
 const fs = require("fs");
 
 console.log(
-  "copying synchronously",
-  fs.copyFileSync("file.txt", "copied-sync.txt")
+    "copying synchronously",
+    fs.copyFileSync("file.txt", "copied-sync.txt")
 ); // undefined
 console.log("Synchronously copied");
