@@ -6,11 +6,12 @@ const server = net.createServer((socket) => {
      * socket:Duplex
     */
 
-    socket.on("data", (data) =>{
+    socket.on("data", (data) => {
         console.log(data.toString("utf-8"));
     })
 })
 
+/* Wireshark Filter: ip.addr == 127.0.0.1 && tcp.port == 3099 */
 server.listen(3099, "127.0.0.1", () => {
     console.log("Server is running on", server.address());
 })
