@@ -1,0 +1,4 @@
+// Purpose: Ignore node_modules folder
+// Reference: https://stackoverflow.com/questions/20230519/what-is-the-purpose-of-gitignore-file
+
+node_modules
